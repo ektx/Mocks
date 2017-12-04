@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mocks</title>
+	<link rel="stylesheet" type="text/css" href="contents/css/reset-1.3.5.css">
+	<link rel="stylesheet" type="text/css" href="contents/css/layout.css">
+</head>
+<body>
+	<header>
+		<h1>Mocks</h1>
+		<button class="go-btn">Go</button>
+	</header>
+
+	<section class="main-content">
+		<div class="code-display" id="editor-mod"></div>
+		<div class="code-display" id="result-mod"></div>
+	</section>
+
+	<script src="contents/js/ace/ace.js"></script>
+	<script src="contents/js/ace/mode-javascript.js"></script>
+	<script type="module">
+		import Mocks from './contents/js/mocks.js'
+		import data from './contents/js/data.js'
+
+		let option = {}
+		let goBtn = document.querySelector('.go-btn')
+
+		let JavaScriptMode = ace.require('ace/mode/javascript').Mode
+		let editorMod = ace.edit('editor-mod')
+		let resultMod = ace.edit('result-mod')
+
+	    editorMod.setShowPrintMargin(false)
+	    resultMod.setShowPrintMargin(false)
+
+	    editorMod.$blockScrolling = Infinity
+	    resultMod.$blockScrolling = Infinity
+
+
+		editorMod.session.setMode(new JavaScriptMode())
+		resultMod.session.setMode(new JavaScriptMode())
+
+		// 生成数据
+		goBtn.addEventListener('click', function() {
+			let getValue = editorMod.getValue() 
+			// 获取输入内容
+			option = eval( getValue )
+			// 清空旧数据
+			resultMod.setValue('')
+			// 添加新数据
+			resultMod.insert( JSON.stringify( new Mocks(option), '', '\t' ))
+		}, false)
+
+		editorMod.insert(data)
+
+		goBtn.click()
+
+	</script>
+</body>
+</html>
