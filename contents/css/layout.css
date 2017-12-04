@@ -60,7 +60,53 @@ header h1 {
 	flex: 1;
 }
 .code-display {
+	position: relative;
 	flex: 1;
 	box-sizing: border-box;
 	border: 1px solid #eee;
+}
+
+.code-area {
+	width: 100%;
+	height: 100%;
+}
+
+.btns-box {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	z-index: 100;
+}
+.btns-box button {
+	position: relative;
+	padding: 4px 6px;
+	cursor: pointer;
+	background-color: #fff;
+	border: 1px solid transparent;
+	border-radius: 2px;
+	outline: none;
+}
+.btns-box button:hover {
+	border-color: #eee;
+}
+.btns-box button:after {
+	visibility: hidden;
+	position: absolute;
+	left: 50%;
+	content: '复制';
+	display: block;
+	padding: 2px 5px;
+	color: #fff;
+	font-size: 12px;
+	white-space: nowrap;
+	border-radius: 2px;
+	background-color: #333;
+	transform: translateX(-50%) translateY(8px);
+	pointer-events: none;
+}
+.btns-box button:hover::after {
+	visibility: visible;
+}
+.btns-box button.copied:hover::after {
+	content: '复制成功'
 }
