@@ -63,6 +63,15 @@ option = {
 				// 在 0-100 之间，保留 3 位小数
 				'number|y': '0-100|3'
 			}
+		},
+
+		// 邮箱示例
+		'object|email example': {
+			// 生成一个默认邮箱 
+			'email|我的邮箱': '',
+
+			// 生成一个指定名的邮箱 
+			'email|gmail': 'gmail.com'
 		}
 	},
 

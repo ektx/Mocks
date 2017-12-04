@@ -2,6 +2,7 @@
 import base from './core/base.js'
 import string from './core/string.js'
 import number from './core/number.js'
+import email from './core/email.js'
 
 
 export default class Mock {
@@ -11,6 +12,7 @@ export default class Mock {
 		this.string = string
 		this.number = number
 		this.boolean = base.boolean
+		this.email = email
 
 		return this.init()
 	}
@@ -64,8 +66,6 @@ export default class Mock {
 
 						// 对于没有分隔线的规则，我们输入字符串
 						if (name === 'PLACEHOLDER_VAL') {
-							// let tem = {}
-							// tem[name] = result
 							result = result.PLACEHOLDER_VAL
 						}
 
