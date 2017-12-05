@@ -1,7 +1,10 @@
 
 export default `
-// Welcome Use Mocks!
-// 请点击 Go 按钮查看运行结果
+/* 
+	Welcome Use Mocks!
+	请点击 Go 按钮查看运行结果
+	https://github.com/ektx/Mocks
+*/
 
 option = {
 	// 规则

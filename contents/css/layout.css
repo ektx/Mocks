@@ -73,7 +73,7 @@ header h1 {
 
 .btns-box {
 	position: absolute;
-	top: 0;
+	top: .5rem;
 	right: 10px;
 	z-index: 100;
 }
@@ -93,7 +93,6 @@ header h1 {
 	visibility: hidden;
 	position: absolute;
 	left: 50%;
-	content: '复制';
 	display: block;
 	padding: 2px 5px;
 	color: #fff;
@@ -107,6 +106,13 @@ header h1 {
 .btns-box button:hover::after {
 	visibility: visible;
 }
-.btns-box button.copied:hover::after {
+.copy-btn:after {
+	content: '复制'
+}
+.copy-btn.copied:after {
 	content: '复制成功'
+}
+
+.download-btn:after {
+	content: '下载'
 }
