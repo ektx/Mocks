@@ -9,6 +9,7 @@ export default `
 option = {
 	// 规则
 	tem: {
+
 		// 字符串示例
 		'object|string example': {
 			// 默认生成英文字符串
@@ -75,7 +76,17 @@ option = {
 
 			// 生成一个指定名的邮箱 
 			'email|gmail': 'gmail.com'
-		}
+		},
+
+		// 颜色生成示例
+		'object|color example': {
+			// 生成 hex 16进制颜色
+			'color|HEX': 'hex',
+			// 生成 RGB 颜色
+			'color|RGB': 'rgb',
+			// 生成 RGBA 颜色
+			'color|RGBA': 'rgba'
+		},
 	},
 
 	// 生成 tem 模板规则的数据

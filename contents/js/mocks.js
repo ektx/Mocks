@@ -3,6 +3,7 @@ import base from './core/base.js'
 import string from './core/string.js'
 import number from './core/number.js'
 import email from './core/email.js'
+import color from './core/color.js'
 
 
 export default class Mock {
@@ -13,6 +14,7 @@ export default class Mock {
 		this.number = number
 		this.boolean = base.boolean
 		this.email = email
+		this.color = color
 
 		return this.init()
 	}
