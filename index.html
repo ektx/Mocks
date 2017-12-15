@@ -8,6 +8,7 @@
 <body>
 	<header>
 		<h1>Mocks</h1>
+		<a id="view-api" href="#">API</a>
 		<button class="go-btn">Go</button>
 	</header>
 
@@ -32,63 +33,6 @@
 	<script src="contents/js/ace/mode-javascript.js"></script>
 	<script src="contents/js/clipboard.min.js"></script>
 	<script src="contents/js/FileSaver.js"></script>
-	<script type="module">
-		import Mocks from './contents/js/mocks.js'
-		import data from './contents/js/data.js'
-
-		let option = {}
-		let goBtn = document.querySelector('.go-btn')
-		let copyBtn = document.getElementById('copy-result')
-		let downloadBtn = document.querySelector('.download-btn')
-
-		let JavaScriptMode = ace.require('ace/mode/javascript').Mode
-		let editorMod = ace.edit('editor-mod')
-		let resultMod = ace.edit('result-mod')
-
-	    editorMod.setShowPrintMargin(false)
-	    resultMod.setShowPrintMargin(false)
-
-	    editorMod.$blockScrolling = Infinity
-	    resultMod.$blockScrolling = Infinity
-
-
-		editorMod.session.setMode(new JavaScriptMode())
-		resultMod.session.setMode(new JavaScriptMode())
-
-		// 生成数据
-		goBtn.addEventListener('click', function() {
-			let getValue = editorMod.getValue() 
-			// 获取输入内容
-			option = eval( getValue )
-			// 清空旧数据
-			resultMod.setValue('')
-			// 添加新数据
-			resultMod.insert( JSON.stringify( new Mocks(option), '', '\t' ))
-		}, false)
-
-		downloadBtn.addEventListener('click', function(){
-			let file = new File([resultMod.getValue()], 'data.json', {type: "text/plain;charset=utf-8"})
-			saveAs(file)
-		})
-
-		let clipEvt = new Clipboard('#copy-result', {
-			text: function() {
-				return resultMod.getValue()
-			}
-		})
-
-		clipEvt.on('success', function(e) {
-			copyBtn.classList.add('copied')
-
-			setTimeout(function() {
-				copyBtn.classList.toggle('copied')
-			}, 2000)
-		})
-
-		editorMod.insert(data)
-
-		goBtn.click()
-
-	</script>
+	<script type="module" src="contents/js/main.js"></script>
 </body>
 </html>

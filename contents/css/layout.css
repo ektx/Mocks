@@ -20,6 +20,17 @@ header h1 {
 	line-height: 60px;
 	color: #333;
 }
+header a {
+	color: #09f;
+	font-size: 14px;
+	padding: 0 2em;
+}
+header a:hover {
+	text-decoration: underline;
+}
+header a:active {
+	color: transparent;
+}
 
 .go-btn {
 	position: relative;
