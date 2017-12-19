@@ -36,8 +36,12 @@ goBtn.addEventListener('click', function() {
 }, false)
 
 downloadBtn.addEventListener('click', function(){
-	let file = new File([resultMod.getValue()], 'data.json', {type: "text/plain;charset=utf-8"})
-	saveAs(file)
+	let name = window.prompt('文件保存为:')
+
+	if (name) {
+		let file = new File([resultMod.getValue()], name + '.json', {type: "text/plain;charset=utf-8"})
+		saveAs(file)
+	}
 })
 
 let clipEvt = new Clipboard('#copy-result', {
