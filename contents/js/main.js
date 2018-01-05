@@ -1,6 +1,14 @@
 
 import Mocks from './mocks.js'
-import data from './data.js'
+// import data from './data.js'
+// import data from '../../test/v2.js'
+
+/*
+	测试
+*/
+import data from '../../test/number/index.js'
+
+
 
 let option = {}
 // 生成

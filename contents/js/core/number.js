@@ -23,46 +23,75 @@
 
 import base from './base.js'
 
-export default function (option) {
+export default function (rules) {
+	let result = 0
 
-	let result = '';
-	let rules = option.split('|')
-	let range = rules[0]
-	let toFixed = parseInt(rules[1]) || 0
-
-	let loop = function(l) {
-		let r = '';
-		for (let i = 0; i < l; i++) {
-			r += base.integer(0, 9)
-		}
-		return r
-	}
-
-	if (option.includes('[')) {
-		let sizeRange = option.slice(1,-1).split('-')
-		let len = base.integer(sizeRange[0], sizeRange[1])
-
-		if (toFixed && toFixed + 2 > sizeRange[0]) {
-			return `ERR: 规则最短要 ${toFixed + 2}`
-		}
-		
-		// 第一和最后一位不能是0
-		result = base.integer(1,9) + loop(len -2) + base.integer(1,9)
-
-		result = result.split('')
-		result.splice(len - toFixed -1, 1, '.')
-		result = result.join('')
-	
+	if (base.typeof(rules) === 'number') {
+		result = rules
 	} else {
 
-		let valRange = range.split('-')
-		let minVal = parseFloat(valRange[0])
-		let maxVal = parseFloat(valRange[1])
+		if ('length' in rules) {
+			result = numLength(rules)
+		} else {
+			result = minAndMax (rules)
+		}
 
-		result = base.integer(minVal, maxVal)
+	}
 
-		result = parseFloat(result - Math.random()).toFixed(toFixed)
+	return result
+}
 
+
+function minAndMax (rules) {
+	let result = 0
+
+	if ('min' in rules) {
+		if (!('max' in rules)) {
+			return '请输入 max 的值'
+		} else {
+			result = base.integer(rules.min, rules.max)				
+		}
+	} else {
+		if ('max' in rules) {
+			result = base.integer(rules.min, rules.max)	
+		}
+	}
+
+	if ('toFixed' in rules) {
+		result = parseFloat(result - Math.random()).toFixed( rules.toFixed )
+	}
+
+	return parseFloat(result)	
+}
+
+function numLength (rules) {
+	let result = ''
+	let length = rules.length
+	let startL = rules.start ? rules.start.length : 0
+	let endL   = rules.end   ? rules.end.length   : 0
+
+	if ('include' in rules && rules.include) {
+		length = length - startL - endL
+	}
+
+	if (length < 0) {
+		return '长度要大于 0'
+	}
+
+	for (let i = 0; i < length; i++) {
+		result += base.integer(0, 9)
+	}
+
+	if (result.startsWith(0)) {
+		result = base.integer(1, 9) + result.substr(1)
+	}
+
+	if (startL) {
+		result = rules.start + result
+	}
+
+	if (endL) {
+		result += rules.end
 	}
 
 	return parseFloat(result)

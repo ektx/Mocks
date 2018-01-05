@@ -1,46 +1,48 @@
 /*
 	规则
 
-	'string|key': 'min-max|lang'
+	'min-max|lang'
 	
-	@key 返回字段,用于返回关键字
 	@min 最少出现个数，默认为 0
 	@max 最大出现个数，默认等于 min
 	@lang 语言，默认为英文字母,可选[zh-CN]
 
-	示例：
 
-	{
-		'string|name': '0-4|zh-CN'
-	}
-
-	// => {name: '玉龙一下'} or {name: ''}
 */
 
 import base from './base.js'
 
 export default function string(option) {
 
-	let rules = option.split('|')
-	let min, max
 	let result
 
-	if (rules[0]) {
-		let s = rules[0].split('-')
-		// 最小个数
-		min = s[0]
-		// 最大个数
-		max = s[1]
+	if(base.typeof(option) === 'array') {
+
+		result = option[ base.integer(0, option.length-1) ]
+
+	} else {
+		
+		let rules = option.split('|')
+		let min, max
+
+		if (rules[0]) {
+			let s = rules[0].split('-')
+			// 最小个数
+			min = s[0]
+			// 最大个数
+			max = s[1]
+		}
+
+		switch (rules[1]) {
+			case 'zh-CN':
+				result = randomZhCN( base.integer(min, max) )
+				break;
+
+			default:
+				result = randomEn( base.integer(min, max) )
+		}
 	}
 
-	switch (rules[1]) {
-		case 'zh-CN':
-			result = randomZhCN( base.integer(min, max) )
-			break;
-
-		default:
-			result = randomEn( base.integer(min, max) )
-	}
 
 	return result
 }
