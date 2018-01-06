@@ -6,7 +6,7 @@ import Mocks from './mocks.js'
 /*
 	测试
 */
-import data from '../../test/number/index.js'
+import data from '../../test/array/index.js'
 
 
 
