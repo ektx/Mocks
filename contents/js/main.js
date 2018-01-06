@@ -39,15 +39,18 @@ goBtn.addEventListener('click', function() {
 	let getValue = editorMod.getValue() 
 	// 获取输入内容
 	option = eval( getValue )
+	// 本地保存
+	localStorage.option = JSON.stringify(getValue)
 
 	setEditVal(resultMod, JSON.stringify( new Mocks(option), '', '\t' ))
 }, false)
 
+// 保存事件
 downloadBtn.addEventListener('click', function(){
 	let name = window.prompt('文件保存为:')
 
 	if (name) {
-		let file = new File([resultMod.getValue()], name + '.json', {type: "text/plain;charset=utf-8"})
+		let file = new File([resultMod.getValue()], name, {type: "text/plain;charset=utf-8"})
 		saveAs(file)
 	}
 })
@@ -66,7 +69,8 @@ clipEvt.on('success', function(e) {
 	}, 2000)
 })
 
-editorMod.insert(data)
+// 设置默认值
+editorMod.insert(localStorage.option ? JSON.parse(localStorage.option) : data)
 
 goBtn.click()
 
