@@ -27,7 +27,7 @@ function objFun (json) {
 
 			case 'object':
 
-				if (val.hasOwnProperty('type')) {
+				if (val.hasOwnProperty('type') && base.typeof(val.type) === 'string') {
 					switch (val.type) {
 						case 'string':
 							result[key] = string(val.data)
