@@ -53,6 +53,19 @@ option = {
         include: true
     },
 
+    // 取一个数字，长度为 11 位
+    lengthProToFixed: {
+        type: 'number',
+        length: 11,
+        // 开头是 86
+        start: '86',
+        // 结束为 119
+        end: '119',
+        // 保留 4 位小数
+        toFixed: 4,
+        include: true
+    },
+
     // 取一个数字，中间长度为 11 位 
     // 开头是 86
     // 结束为 110

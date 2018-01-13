@@ -1,24 +1,6 @@
 
 /*
-	规则
-
-	'number|key': '[minLen - maxLen]|toFixed'
-	'number|key': 'minVal - maxVal|toFixed'
-
-	@key 返回字段，用于返回的关键字
-	@minLen 最小长度
-	@maxLen 最大长度
-	@minVal 最小值
-	@maxVal 最大值
-	@toFixed 保留几位小数
-
-	示例：
-
-	{
-		'number|val': '[5-10]|2'
-	}
-
-	// => { val: 2.13 } or { val: 1.08 }
+	Number
 */
 
 import base from './base.js'
@@ -41,7 +23,11 @@ export default function (rules) {
 	return result
 }
 
-
+/*
+	对大小值
+	支持：
+	@min @max @toFixed
+*/
 function minAndMax (rules) {
 	let result = 0
 
@@ -64,6 +50,12 @@ function minAndMax (rules) {
 	return parseFloat(result)	
 }
 
+
+/*
+	对长度的处理
+	支持：
+	@start @end @include @toFixed
+*/
 function numLength (rules) {
 	let result = ''
 	let length = rules.length
@@ -92,6 +84,17 @@ function numLength (rules) {
 
 	if (endL) {
 		result += rules.end
+	}
+
+	if ('toFixed' in rules ) {
+		if (length < rules.toFixed)
+			return 'toFixed 要小于总长度'
+		else {
+			let str = result.toString()
+			
+			result = str.slice(0, 0 - (rules.toFixed + 1)) +'.'+ str.slice(0 - rules.toFixed)
+		}
+
 	}
 
 	return parseFloat(result)
