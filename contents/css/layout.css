@@ -34,9 +34,6 @@ header a {
 header a:hover {
 	background-color: #f5f5f5;
 }
-header a:active {
-	color: transparent;
-}
 
 .go-btn {
 	position: relative;

@@ -5,6 +5,7 @@ import number from './number.js'
 import email from './email.js'
 import color from './color.js'
 import array from './array.js'
+import boolean from './boolean.js'
 
 function objFun (json) {
 
@@ -36,6 +37,9 @@ function objFun (json) {
 						case 'number':
 							result[key] = number(val)
 							break
+
+						case 'boolean':
+							result[key] = boolean(val.data)
 
 					}
 				} else {
