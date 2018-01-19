@@ -9,48 +9,58 @@ import boolean from './boolean.js'
 
 function objFun (json) {
 
-	let result = {}
+		let result = ''
 
-	for (let [key, val] of Object.entries(json)) {
+	if (base.typeof(json) === 'array') {
+	
+		result = array(json)
+	
+	} else {
 
-		switch (base.typeof(val)) {
-			case 'string':
-				result[key] = string(val)
-				break;
+		result = {}
 
-			case 'array':
-				result[key] = array(val)
-				break;
+		for (let [key, val] of Object.entries(json)) {
 
-			case 'number':
-				result[key] = number(val)
-				break
+			switch (base.typeof(val)) {
+				case 'string':
+					result[key] = string(val)
+					break;
 
-			case 'object':
+				case 'array':
+					result[key] = array(val)
+					break;
 
-				if (val.hasOwnProperty('type') && base.typeof(val.type) === 'string') {
-					switch (val.type) {
-						case 'string':
-							result[key] = string(val.data)
-							break
+				case 'number':
+					result[key] = number(val)
+					break
 
-						case 'number':
-							result[key] = number(val)
-							break
+				case 'object':
 
-						case 'boolean':
-							result[key] = boolean(val.data)
+					if (val.hasOwnProperty('type') && base.typeof(val.type) === 'string') {
+						switch (val.type) {
+							case 'string':
+								result[key] = string(val.data)
+								break
 
+							case 'number':
+								result[key] = number(val)
+								break
+
+							case 'boolean':
+								result[key] = boolean(val.data)
+
+						}
+					} else {
+						result[key] = objFun(val)
 					}
-				} else {
-					result[key] = objFun(val)
-				}
 
-				break;
+					break;
+			}
 		}
+
 	}
 
-	return result	
+	return result
 }
 
 export default objFun
