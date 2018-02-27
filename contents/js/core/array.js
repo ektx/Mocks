@@ -65,15 +65,7 @@ function getTypeData (type, data) {
 			break
 
 		case 'object':
-			if (data.hasOwnProperty('type')) {
-				if (data.type === 'number')
-					tem = getTypeData (data.type, data)
-				else
-					tem = getTypeData( data.type, data.data )
-			} else {
-				tem = object(data)
-			}
-
+			tem = object(data)
 			break;
 
 		default:
