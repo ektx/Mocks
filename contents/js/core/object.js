@@ -6,6 +6,7 @@ import email from './email.js'
 import color from './color.js'
 import array from './array.js'
 import boolean from './boolean.js'
+import datetime from './dateTime.js'
 
 function objFun (json) {
 
@@ -32,7 +33,7 @@ function objFun (json) {
 
 				case 'number':
 					result[key] = number(val)
-					break
+					break;
 
 				case 'object':
 
@@ -40,15 +41,19 @@ function objFun (json) {
 						switch (val.type) {
 							case 'string':
 								result[key] = string(val.data)
-								break
+								break;
 
 							case 'number':
 								result[key] = number(val)
-								break
+								break;
 
 							case 'boolean':
 								result[key] = boolean(val.data)
+								break;
 
+							case 'datetime':
+								result[key] = datetime(val.data, val.time);
+								break;
 						}
 					} else {
 						result[key] = objFun(val)

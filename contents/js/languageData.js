@@ -29,13 +29,29 @@ export default [
         caption: 'data',
         meta: 'mock - data',
         type: 'mock',
-        score: 1000
+        score: 1400
+     },
+    {
+        name: 'datetime',
+        value: 'datetime',
+        caption: 'datetime',
+        meta: 'mock - datetime',
+        type: 'mock',
+        score: 1399
      },
      {
          name: 'type',
          value: 'type: ',
          caption: 'type',
          meta: 'mock - type',
+         type: 'mock',
+         score: 1100
+     },
+     {
+         name: 'zh-CN',
+         value: 'zh-CN',
+         caption: 'zh-CN',
+         meta: 'mock - zh-CN',
          type: 'mock',
          score: 1100
      },
