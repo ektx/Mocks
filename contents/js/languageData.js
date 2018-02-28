@@ -1,4 +1,14 @@
 export default [
+    // B 1200-1299
+    {
+        name: 'bgColor',
+        value: 'bgColor: ',
+        caption: 'bgColor',
+        meta: 'mock - bgColor',
+        type: 'mock',
+        score: 1290
+    },
+    // C 1300-1399
     {
         name: 'CNBJX',
         value: 'CNBJX',
@@ -22,6 +32,22 @@ export default [
         meta: 'mock - b',
         type: 'mock',
         score: 1000
+    },
+    {
+         name: 'height',
+         value: 'height: ',
+         caption: 'height',
+         meta: 'mock - height',
+         type: 'mock',
+         score: 1000
+    },
+    {
+         name: 'image',
+         value: 'image',
+         caption: 'image',
+         meta: 'mock - image',
+         type: 'mock',
+         score: 1000
     },
     {
          name: 'string',
@@ -48,12 +74,36 @@ export default [
         score: 1399
      },
      {
+         name: 'text',
+         value: 'text: ',
+         caption: 'text',
+         meta: 'mock - text',
+         type: 'mock',
+         score: 2000
+     },
+     {
+         name: 'textColor',
+         value: 'textColor: ',
+         caption: 'textColor',
+         meta: 'mock - textColor',
+         type: 'mock',
+         score: 2000
+     },
+     {
          name: 'type',
          value: 'type: ',
          caption: 'type',
          meta: 'mock - type',
          type: 'mock',
-         score: 1100
+         score: 2000
+     },
+     {
+         name: 'width',
+         value: 'width: ',
+         caption: 'width',
+         meta: 'mock - width',
+         type: 'mock',
+         score: 2100
      },
      {
          name: 'zh-CN',
@@ -61,6 +111,6 @@ export default [
          caption: 'zh-CN',
          meta: 'mock - zh-CN',
          type: 'mock',
-         score: 1100
+         score: 2200
      },
 ]

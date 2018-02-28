@@ -12,7 +12,7 @@ option = {
 
     // 简单模式
     // 生成中文 1-10 个字
-    name: '1-10|zh-CN',
+    str: '1-10|zh-CN',
     
     // 高级模式
     // 生成指定的数据中一个
@@ -36,7 +36,7 @@ option = {
     },
 
     // 取一个姓在中国百家姓中
-    name: {
+    familyName: {
         type: 'string',
         data: '0|CNBJX'
     },

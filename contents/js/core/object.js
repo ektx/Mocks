@@ -7,65 +7,62 @@ import color from './color.js'
 import array from './array.js'
 import boolean from './boolean.js'
 import datetime from './dateTime.js'
+import image from './image.js'
 
 function objFun (json) {
 
-		let result = ''
+	let result = ''
 
-	if (base.typeof(json) === 'array') {
-	
-		result = array(json)
-	
+	if (json.hasOwnProperty('type') && base.typeof(json.type) === 'string') {
+		result = verificationType(json.type, json)
 	} else {
-
-		result = {}
-
-		for (let [key, val] of Object.entries(json)) {
-
-			switch (base.typeof(val)) {
-				case 'string':
-					result[key] = string(val)
-					break;
-
-				case 'array':
-					result[key] = array(val)
-					break;
-
-				case 'number':
-					result[key] = number(val)
-					break;
-
-				case 'object':
-
-					if (val.hasOwnProperty('type') && base.typeof(val.type) === 'string') {
-						switch (val.type) {
-							case 'string':
-								result[key] = string(val.data)
-								break;
-
-							case 'number':
-								result[key] = number(val)
-								break;
-
-							case 'boolean':
-								result[key] = boolean(val.data)
-								break;
-
-							case 'datetime':
-								result[key] = datetime(val.data, val.time);
-								break;
-						}
-					} else {
-						result[key] = objFun(val)
-					}
-
-					break;
-			}
-		}
-
+		result = verificationType(base.typeof(json), json)
 	}
 
 	return result
 }
 
 export default objFun
+
+function verificationType (type, json) {
+	let result = null
+
+	switch (type) {
+		case 'array':
+			result = array(json)
+			break;
+
+		case 'object':
+			result = {}
+
+			for (let key in json) {
+				if (json.hasOwnProperty(key)) {
+					let _inner = json[key]
+					result[key] = objFun(_inner)
+				}
+			}
+			break;
+
+		case 'string':
+			result = string(json.data ? json.data : json)
+			break;
+
+		case 'number':
+			result = number(json)
+			break;
+
+		case 'boolean':
+			result = boolean(json.data)
+			break;
+
+		case 'image':
+			result = image(json.data)
+			break;
+
+		case 'datetime':
+			result = datetime(json.data, json.time);
+			break;
+	}
+
+	return result
+}

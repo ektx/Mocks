@@ -80,7 +80,7 @@ goBtn.addEventListener('click', function(evt) {
 	// 本地保存
 	localStorage.option = JSON.stringify(getValue)
 
-	setEditVal(resultMod, JSON.stringify( new Mocks(option), '', '\t' ))
+	setEditVal(resultMod, JSON.stringify( Mocks(option), '', '\t' ))
 
 	materialAni(this, evt)
 }, false)
