@@ -1,5 +1,13 @@
 export default [
     {
+        name: 'CNBJX',
+        value: 'CNBJX',
+        caption: 'CNBJX',
+        meta: 'mock - 中国百家姓',
+        type: 'mock',
+        score: 1000
+    },
+    {
         name: 'option',
         value: 'option = ',
         caption: 'option',

@@ -26,6 +26,19 @@ option = {
     hello2: {
     	type: 'string',
     	data: '1-10'
-    }
+    },
+
+    // 中国百家姓
+    // 生成一个中国百家姓，名字长度1-2
+    name: {
+        type: 'string',
+        data: '1-2|CNBJX'
+    },
+
+    // 取一个姓在中国百家姓中
+    name: {
+        type: 'string',
+        data: '0|CNBJX'
+    },
 };
 `
