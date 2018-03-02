@@ -75,10 +75,16 @@ require(['ace/ace', 'ace/ext/language_tools', 'js/clipboard.min'], function(ace,
 goBtn.addEventListener('click', function(evt) {
 
 	let getValue = editorMod.getValue() 
+	let saveArr = localStorage.optionArr ?  JSON.parse(localStorage.optionArr) : []
+	let getValueStr = JSON.stringify(getValue)
 	// 获取输入内容
 	option = eval( getValue )
+
+	if (!saveArr.includes(getValueStr))
+		saveArr.push( getValueStr )
 	// 本地保存
-	localStorage.option = JSON.stringify(getValue)
+	localStorage.option = getValueStr
+	localStorage.optionArr = JSON.stringify(saveArr)
 
 	setEditVal(resultMod, JSON.stringify( Mocks(option), '', '\t' ))
 
@@ -122,11 +128,14 @@ function materialAni (el, evt) {
 	}, false)
 }
 
+let historyUl = document.querySelector('.history-ul')
+let optionsArr = null
 
 document.querySelector('.api-mod').addEventListener('click', (evt) => {
+	let _ = evt.target
 
-	if (evt.target.tagName === 'A') {
-
+	if (_.tagName === 'A' && _.dataset.type) {
+		
 		import(`../../test/${evt.target.dataset.type}/index.js`).then(data => {
 			setEditVal(resultMod, data.default)
 		})
@@ -134,6 +143,33 @@ document.querySelector('.api-mod').addEventListener('click', (evt) => {
 			console.error(err)
 		})
 
-		materialAni (evt.target, evt)
+		materialAni(evt.target, evt)
+	}
+})
+
+// 打开历史记录
+document.getElementById('historyBtn').addEventListener('click', (evt) => {
+	optionsArr = JSON.parse(localStorage.optionArr)
+	let _html = ''
+
+	optionsArr.forEach((val, index) => {
+		_html += `<li data-i=${index}><p>${JSON.parse(val)}</p></li>`
+	})
+
+	historyUl.innerHTML = _html
+	document.querySelector('.history-mod').classList.toggle('show')
+})
+
+// 关闭历史记录
+document.querySelector('.hide-history').addEventListener('click', (evt) => {
+	document.querySelector('.history-mod').classList.toggle('show')
+})
+
+// 使用历史记录
+historyUl.addEventListener('click', (evt)=> {
+	if (evt.target.tagName === 'P') {
+		let inner = optionsArr[evt.target.parentElement.dataset.i]
+		console.log()
+		setEditVal(editorMod, JSON.parse(inner) )
 	}
 })
