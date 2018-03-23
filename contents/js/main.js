@@ -169,7 +169,6 @@ document.querySelector('.hide-history').addEventListener('click', (evt) => {
 historyUl.addEventListener('click', (evt)=> {
 	if (evt.target.tagName === 'P') {
 		let inner = optionsArr[evt.target.parentElement.dataset.i]
-		console.log()
 		setEditVal(editorMod, JSON.parse(inner) )
 	}
 })
