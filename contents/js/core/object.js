@@ -8,6 +8,7 @@ import array from './array.js'
 import boolean from './boolean.js'
 import datetime from './dateTime.js'
 import image from './image.js'
+import phone from './phone.js';
 
 function objFun (json) {
 
@@ -61,6 +62,10 @@ function verificationType (type, json) {
 
 		case 'datetime':
 			result = datetime(json.data, json.time);
+			break;
+
+		case 'phone':
+			result = phone(json.data)
 			break;
 	}
 
