@@ -67,6 +67,10 @@ function verificationType (type, json) {
 		case 'phone':
 			result = phone(json.data)
 			break;
+
+		case 'email':
+			result = email(json.data)
+			break;
 	}
 
 	return result

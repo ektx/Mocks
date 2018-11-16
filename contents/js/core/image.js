@@ -2,14 +2,14 @@
 export default function image (options) {
 
     let defaultOption = {
-        width: 8,
-        height: 8,
+        width: 100,
+        height: 80,
         text: '',
-        bgColor: '#fff',
-        textColor: '#333'
+        bgColor: '06f',
+        textColor: 'fff'
     }
 
-    options = Object.assign(defaultOption, options)
+    options = Object.assign({}, defaultOption, options)
 
     options.text = options.text.replace(/\s+/, '+')
 

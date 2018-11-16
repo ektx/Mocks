@@ -1,7 +1,6 @@
 
 import string from './string.js'
-import number from './number.js'
 
-export default function(str) {
-	return string('0-10') + number('[1-5]') +'@'+ (str ? str : 'mocks.com')
+export default function(str = 'mocks.com') {
+	return string('1-10').toLocaleLowerCase() +'@'+ str
 }

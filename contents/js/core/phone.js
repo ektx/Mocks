@@ -1,21 +1,63 @@
+import number from './number.js'
+
 /**
  * 国际字冠+国家代码+地区代码(区号)+电话号码
  * International prefix + country code + area code (area code) + phone number
  * @param {objetc} obj 
- * @param {boolean} int 国际字冠
- * @param {boolean} cc 国家代码
+ * @param {boolean|string} int 国际字冠
+ * @param {boolean|string} country 国家代码
  * @param {boolean} privacy 安全，区号是否为加 ****
  */
 export default function (obj) {
     console.log(obj)
     let result = ''
+    let opts = {
+        // International 国际字冠 默认无
+        // true => +,可以添加,如：'00'
+        int: false,
+        // 国家代码 true 时为自动添加本地
+        country: false,
+        // 手机号模糊处理
+        privacy: false
+    }
 
-    if (obj.int) {
-        let _int = defaultCountryCode[obj.cc || navigator.language]
+    opts = Object.assign(opts, obj)
 
-        if (_int) {
-            result = '+' + _int
+    if (opts.int) {
+        if (typeof opts.int === 'boolean') {
+            result = '+'
+        } else {
+            result = ''+opts.int
         }
+    }
+
+    if (opts.country) {
+        if (typeof opts.country === 'boolean') {
+            result += defaultCountryCode[navigator.language]
+        } else {
+            if (defaultCountryCode.hasOwnProperty(opts.country)) {
+                result += defaultCountryCode[opts.country]
+            } else {
+                result += defaultCountryCode[navigator.language]
+            }
+        }
+    }
+
+    result += `1`+number({
+        type: 'number',
+        length: 2
+    })
+
+    if (opts.privacy) {
+        result += '****' + number({
+            type: 'number',
+            length: 4
+        })
+    } else {
+        result += number({
+            type: 'number',
+            length: 8
+        })
     }
 
     return result
