@@ -9,7 +9,6 @@ import number from './number.js'
  * @param {boolean} privacy 安全，区号是否为加 ****
  */
 export default function (obj) {
-    console.log(obj)
     let result = ''
     let opts = {
         // International 国际字冠 默认无
