@@ -1,5 +1,5 @@
 
-import Mocks from './mocks.js'
+import Mocks, { tomd } from '../../lib/index.js'
 
 /*
 	测试
@@ -89,6 +89,8 @@ goBtn.addEventListener('click', function(evt) {
 	setEditVal(resultMod, JSON.stringify( Mocks(option), '', '\t' ))
 
 	materialAni(this, evt)
+
+	console.log( tomd(option) )
 }, false)
 
 // 保存事件
