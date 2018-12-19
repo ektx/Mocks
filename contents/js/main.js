@@ -90,7 +90,7 @@ goBtn.addEventListener('click', function(evt) {
 
 	materialAni(this, evt)
 
-	console.log( tomd(option) )
+	console.log( tomd(option, '接口说明') )
 }, false)
 
 // 保存事件
