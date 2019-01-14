@@ -1,5 +1,5 @@
 
-import Mocks, { tomd } from '../../lib/index.js'
+import Mocks, { toMD } from '../../lib/index.js'
 
 /*
 	测试
@@ -90,7 +90,34 @@ goBtn.addEventListener('click', function(evt) {
 
 	materialAni(this, evt)
 
-	console.log( tomd(option, '接口说明') )
+	console.log( toMD({
+		data: option,
+		title: 'API Doc',
+		preview: true,
+		// 自定义 header
+		header: {
+			label: {
+				label: '参数',
+				align: 'left'
+			},
+			type: {
+				label: '类型',
+				align: 'left'
+			},
+			mark: {
+				label: '说明',
+				align: 'left'
+			},
+			preset: {
+				label: '默认值',
+				align: 'left'
+			},
+			required: {
+				label: '必填',
+				align: 'center'
+			}
+		}
+	}) )
 }, false)
 
 // 保存事件
