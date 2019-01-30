@@ -1,4 +1,5 @@
 export default `
+
 /*
     Array API
     -------------------------------
@@ -24,7 +25,7 @@ option = {
         // 生成二维数组
         arrAir: {
             type: 'array',
-            min: 10,
+            min: 3,
             data: [
                 {
                     type: 'array',
@@ -40,8 +41,8 @@ option = {
         // 生成数组
         pro: {
             type: 'array',
-            max: 10,
-            min: 5,
+            max: 4,
+            min: 2,
             data: [{
                 type: 'string',
                 max: 10
@@ -75,9 +76,33 @@ option = {
                 ['ued', 'f2e'],
                 'hello world'
             ]
+        },
+        
+        // Step 示例
+        // 生成 2019之后的年份，最多生成5年
+        stepUp: {
+            type: 'array',
+            max: 5,
+            step: 1,
+            data: 2019
+        },
+        
+        // 生成到2019年的前几年，最多前5年
+        stepDown: {
+            type: 'array',
+            max: 5,
+            step: -1,
+            data: 2019
+        },
+        
+        // 生成项目编号 
+        stepStr: {
+            type: 'array',
+            min: 5,
+            step: 1,
+            data: 'TOP.'
         }
     }
 };
-
 
 `

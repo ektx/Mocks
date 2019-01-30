@@ -90,10 +90,11 @@ goBtn.addEventListener('click', function(evt) {
 
 	materialAni(this, evt)
 
+	console.clear()
 	console.log( toMD({
 		data: option,
 		title: 'API Doc',
-		preview: true,
+		// preview: true,
 		// 自定义 header
 		header: {
 			label: {
