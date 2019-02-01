@@ -6,6 +6,13 @@ export default `
 option = {
     type: 'object',
     data: {
+        'index':{
+            type: 'string',
+            data: 'No.',
+            step: 1,
+            start: 0
+        },
+        
         str: {
             type: 'string',
             max: 10,
