@@ -1,0 +1,9 @@
+{
+  "name": "@ektx/mocks",
+  "version": "0.0.2",
+  "description": "mock json data and markdown file.",
+  "main": "lib/index.js",
+  "repository": "https://github.com/ektx/Mocks.git",
+  "author": "ektx <530675800@qq.com>",
+  "license": "MIT"
+}
